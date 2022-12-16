@@ -5,7 +5,7 @@ Feature: Cab fare estimation
 	I need to be able to request cab fare estimation
 
 	Rules:
-		- The requested estimation must be for addreses in served cities
+		- The requested estimation must be for addresses in served cities
 		- The base fare $5
 		- The fare per kilometer is $1
 
