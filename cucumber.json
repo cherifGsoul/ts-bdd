@@ -1,0 +1,16 @@
+{
+	"default": {
+	  "requireModule": [
+		"ts-node/register"
+	  ],
+	  "require": [
+		"features/**/*.ts"
+	  ],
+	  "format": [
+		"progress-bar"
+	  ],
+	  "retry": 2,
+	  "retryTagFilter": "@flaky",
+	  "publishQuiet": true
+	}
+  }
