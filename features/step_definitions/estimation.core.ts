@@ -11,8 +11,14 @@ Given('a route between {string} and {string} in this city', function (
 	destination
 	) {
 	this.route = {
-		origin: Domain.Address.fromString(origin),
-		destination: Domain.Address.fromString(destination),
+		origin: {
+			street: Domain.Street.fromString(origin),
+			city: this.servedCity
+		},
+		destination: {
+			street: Domain.Street.fromString(destination),
+			city: this.servedCity
+		}
 	}
 });
 
@@ -28,5 +34,5 @@ When('I request an estimation for a ride for this route', function () {
 });
 
 Then('the estimated price should be ${int}', function (estimatedFare) {
-	expect(this.estimation.fare).to.equal(estimatedFare)
+	expect(this.estimation).to.equal(estimatedFare)
 });

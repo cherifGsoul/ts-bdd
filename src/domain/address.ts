@@ -1,11 +1,9 @@
+import { ServedCity } from "./served-city"
 import { Brand } from "./brand"
-import { isNonEmptyString } from "./predicates"
+import { Street } from "./street"
 
-export type Address = Brand<string, 'Address'>
 
-export const fromString = (s: string): Address => {
-	if (!isNonEmptyString(s)) {
-		throw new Error('Address must be a valid non-empty string')
-	}
-	return s as Address
-}
+export type Address = Brand<{
+	street: Street,
+	city: ServedCity
+}, 'Address'>

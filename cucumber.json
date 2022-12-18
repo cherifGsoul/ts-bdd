@@ -4,13 +4,23 @@
 		"ts-node/register"
 	  ],
 	  "require": [
-		"features/**/*.ts"
+		"features/**/*.shell.ts"
 	  ],
 	  "format": [
-		"progress-bar"
+		"summary"
 	  ],
-	  "retry": 2,
-	  "retryTagFilter": "@flaky",
 	  "publishQuiet": true
-	}
+	},
+	"core": {
+		"requireModule": [
+		  "ts-node/register"
+		],
+		"require": [
+		  "features/**/*.core.ts"
+		],
+		"format": [
+		  "summary"
+		],
+		"publishQuiet": true
+	  }
   }
