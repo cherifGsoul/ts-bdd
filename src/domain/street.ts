@@ -1,11 +1,10 @@
-import { Brand } from './brand';
+import { iso, Newtype } from 'newtype-ts';
+import * as E from 'fp-ts/Either';
 import { isNonEmptyString } from './predicates';
 
-export type Street = Brand<string, 'Street'>;
+export type Street = Newtype<{ readonly Street: unique symbol }, string>;
 
-export const fromString = (s: string): Street => {
-  if (!isNonEmptyString(s)) {
-    throw new Error('Address must be a valid non-empty string');
-  }
-  return s as Street;
-};
+export const fromString = E.fromPredicate(
+  isNonEmptyString<Street>,
+  (val) => new Error(`${val} Invalid distance`)
+);

@@ -52,6 +52,9 @@
   },
   "dependencies": {
     "@types/uuid": "^9.0.0",
+    "fp-ts": "^2.13.1",
+    "monocle-ts": "^2.3.13",
+    "newtype-ts": "^0.3.5",
     "uuid": "^9.0.0"
   }
 }

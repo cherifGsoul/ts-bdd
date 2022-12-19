@@ -1,11 +1,11 @@
-import { Brand } from './brand';
-import { isPositiveNumber } from './predicates';
+import { iso, Newtype } from 'newtype-ts';
+import * as E from 'fp-ts/Either';
+import { isPositiveInteger } from './predicates';
 
-export type Distance = Brand<number, 'Distance'>;
+export type Distance = Newtype<{ readonly Distance: unique symbol }, number>;
 
-export const fromNumber = (s: number): Distance => {
-  if (!isPositiveNumber(s)) {
-    throw new Error('Distance must be a valid positive number');
-  }
-  return s as Distance;
-};
+export const fromNumber = E.fromPredicate(
+  isPositiveInteger<Distance>,
+  (val) => new Error(`${val} Invalid distance`)
+);
+export const isoDistance = iso<Distance>();

@@ -1,11 +1,13 @@
 import { ServedCity } from './served-city';
-import { Brand } from './brand';
 import { Street } from './street';
+import * as A from "fp-ts/lib/Apply";
+import * as E from 'fp-ts/Either';
 
-export type Address = Brand<
+export type Address = Readonly<
   {
     street: Street;
     city: ServedCity;
-  },
-  'Address'
+  }
 >;
+
+export const parse = A.sequenceS(E.Apply);
