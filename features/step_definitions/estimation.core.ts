@@ -9,16 +9,16 @@ Given('{string} is a served city', function (city) {
 Given(
   'a route between {string} and {string} in this city',
   function (origin, destination) {
-    this.route = {
-      origin: {
+    this.route = Domain.Route.between(
+      {
         street: Domain.Street.fromString(origin),
         city: this.servedCity,
-      },
-      destination: {
+      } as Domain.Address.Address,
+      {
         street: Domain.Street.fromString(destination),
         city: this.servedCity,
-      },
-    };
+      } as Domain.Address.Address
+    );
   }
 );
 
