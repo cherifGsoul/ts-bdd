@@ -1,3 +1,1 @@
-describe('in memory served cities', () => {
-    
-})
+describe('in memory served cities', () => {});

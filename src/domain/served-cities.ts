@@ -1,3 +1,3 @@
 export interface ServedCities {
-	isCityServed(city: string): Promise<boolean>
+  isCityServed(city: string): Promise<boolean>;
 }

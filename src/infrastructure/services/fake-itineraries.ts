@@ -1,16 +1,16 @@
-import { Distance, Itineraries, Itinerary, Route } from "../../domain";
+import { Distance, Itineraries, Itinerary, Route } from '../../domain';
 
 export class FakeItineraries implements Itineraries {
-    constructor(public distance: number = 0) {}
+  constructor(public distance: number = 0) {}
 
-	public withDistance(distance: number) {
-        this.distance = distance
-	}
+  public withDistance(distance: number) {
+    this.distance = distance;
+  }
 
-    public async getForRoute(route: Route): Promise<Itinerary> {
-        return {
-            route,
-            distance: Distance.fromNumber(this.distance)
-        } as Itinerary
-    }
+  public async getForRoute(route: Route.Route): Promise<Itinerary> {
+    return {
+      route,
+      distance: Distance.fromNumber(this.distance),
+    } as Itinerary;
+  }
 }
