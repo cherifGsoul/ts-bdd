@@ -38,6 +38,7 @@ export class RideEstimationCommandHandler {
   }
 
   public async handle(command: RideEstimationCommand): Promise<string> {
+    // instantiate the route
     const route: Route.Route = Route.between(
       {
         street: Street.fromString(command.origin.street),
@@ -49,13 +50,20 @@ export class RideEstimationCommandHandler {
       } as Address.Address
     );
 
+    // get an itinerary for the route
     const itinerary: Itinerary = await this.#itineraries.getForRoute(route);
+
+    // estimate the itinerary distance fare
     const fare = estimateForItinerary(itinerary);
+
+    // instantiate the estimation with the fare
     const estimation: Estimation = {
       id: this.#estimations.nextIdentity(),
       itinerary,
       fare,
     } as Estimation;
+
+    // persist the estimation
     await this.#estimations.save(estimation);
     return estimation.id.toString();
   }
