@@ -3,7 +3,7 @@ import { Distance } from './distance';
 import { EstimationId } from './estimation-id';
 import * as Fare from './fare';
 import { Itinerary } from './itinerary';
-import * as Route from './route';
+import * as E from 'fp-ts/Either';
 
 export type Estimation = Brand<
   {
@@ -17,10 +17,12 @@ export type Estimation = Brand<
 const baseFare = 5;
 const farePerKm = 1;
 
-// export const estimateForItinerary = (itinerary: Itinerary): Fare.Fare => {
-//   const fare = itinerary.distance * farePerKm + baseFare;
-//   return Fare.fromNumber(fare);
-// };
+export const estimateForItinerary = (
+  itinerary: Itinerary
+): E.Either<Error, Fare.Fare> => {
+  const fare = Number(itinerary.distance) * farePerKm + baseFare;
+  return Fare.fromNumber(fare);
+};
 
 export * as ServedCity from './served-city';
 export * as Address from './address';
