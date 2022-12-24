@@ -1,13 +1,22 @@
-import { ServedCities, ServedCity } from '../../../domain';
+import { ServedCity } from '../../../domain';
+import * as TE from 'fp-ts/TaskEither';
+import * as IO from 'fp-ts/lib/IO';
 
-export class InMemoryServedCities implements ServedCities {
-  cities: Map<string, ServedCity.ServedCity> = new Map();
+// Fake DB
+const cities: Map<string, ServedCity.ServedCity> = new Map();
 
-  public async isCityServed(city: string): Promise<boolean> {
-    return this.cities.has(city);
-  }
+const setServedCity = (
+  city: ServedCity.ServedCity
+): IO.IO<ServedCity.ServedCity> => {
+  cities.set(String(city), city);
+  return IO.of(city);
+};
 
-  public async serve(city: ServedCity.ServedCity): Promise<void> {
-    this.cities.set(city.toString(), city);
-  }
-}
+export const serveCity = (
+  city: ServedCity.ServedCity
+): TE.TaskEither<Error, ServedCity.ServedCity> =>
+  TE.fromIO(setServedCity(city));
+
+export const isServedCity = (
+  city: ServedCity.ServedCity
+): TE.TaskEither<Error, boolean> => TE.right(cities.has(String(city)));

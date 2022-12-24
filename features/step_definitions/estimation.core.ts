@@ -6,6 +6,7 @@ import assert from 'assert';
 
 Given('{string} is a served city', function (city) {
   this.servedCity = Domain.ServedCity.fromString(city);
+  console.log(this.servedCity);
 });
 
 Given(

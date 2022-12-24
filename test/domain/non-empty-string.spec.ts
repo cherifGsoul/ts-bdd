@@ -7,7 +7,6 @@ describe('non empty string', () => {
 
   it('should accept valid strings', () => {
     const val: NonEmptyString.NonEmptyString = NonEmptyString.fromString('foo');
-    console.log(val);
     expect(NonEmptyString.fromString('foo')).toEqual('foo');
   });
 });
